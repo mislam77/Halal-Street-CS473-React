@@ -179,10 +179,12 @@ const MenuPage = () => {
         title="Dinner" 
         dishes={dinnerDishes} 
       />
-      {/* <FloatingCartButton /> */}
       
-      {/* Cart Component - Only visible when toggled by the floating button */}
-      {/* <Cart /> */}
+      {/* Floating Cart Button */}
+      <FloatingCartButton />
+      
+      {/* Cart Component */}
+      <Cart />
     </>
   );
 };

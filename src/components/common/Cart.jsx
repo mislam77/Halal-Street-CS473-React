@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { FiX, FiPlus, FiMinus } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 import CartContext from '../../context/CartContext';
 
 const Cart = () => {
@@ -61,18 +62,25 @@ const Cart = () => {
   return (
     <>
       {/* Cart Overlay - Only visible when cart is open */}
-      {isCartOpen && (
-        <div 
-          className="fixed inset-0 bg-black-1 bg-opacity-50 z-[990] transition-opacity duration-300"
-          onClick={() => setIsCartOpen(false)}
-        ></div>
-      )}
+      <AnimatePresence>
+        {isCartOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-black-1 bg-opacity-50 z-[990]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsCartOpen(false)}
+          ></motion.div>
+        )}
+      </AnimatePresence>
       
       {/* Cart Sidebar */}
-      <div 
-        className={`fixed top-0 right-0 w-[350px] max-w-[85%] h-screen bg-white shadow-lg z-[1001] transition-all duration-300 transform ${
-          isCartOpen ? 'translate-x-0' : 'translate-x-full'
-        } overflow-y-auto p-5`}
+      <motion.div 
+        className="fixed top-0 right-0 w-[350px] max-w-[85%] h-screen bg-white shadow-lg z-[1001] p-5 overflow-y-auto"
+        initial={{ x: '100%' }}
+        animate={{ x: isCartOpen ? 0 : '100%' }}
+        transition={{ type: 'tween', duration: 0.3 }}
       >
         {/* Cart Header */}
         <div className="flex justify-between items-center pb-4 border-b border-gray-200 mb-5">
@@ -80,6 +88,7 @@ const Cart = () => {
           <button 
             className="p-2 rounded-full hover:bg-gray-100 transition-colors"
             onClick={() => setIsCartOpen(false)}
+            aria-label="Close cart"
           >
             <FiX className="w-6 h-6" />
           </button>
@@ -117,6 +126,7 @@ const Cart = () => {
                       className="w-6 h-6 bg-lightGreen-1 flex items-center justify-center rounded transition-colors hover:bg-green-2 hover:text-white"
                       onClick={() => updateQuantity(index, item.quantity - 1)}
                       aria-label="Decrease quantity"
+                      disabled={item.quantity <= 1}
                     >
                       <FiMinus className="w-4 h-4" />
                     </button>
@@ -150,33 +160,45 @@ const Cart = () => {
               <span className="text-green-1">${getTotalPrice().toFixed(2)}</span>
             </div>
             
-            <button 
+            <motion.button 
               className="w-full bg-green-1 text-white border-none rounded-lg py-3 px-5 text-[1.6rem] font-medium cursor-pointer transition-colors hover:bg-green-2 mb-4"
               onClick={handleCheckout}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Checkout
-            </button>
+            </motion.button>
             
             <div className="flex justify-between">
-              <button 
+              <motion.button 
                 className="border border-gray-300 rounded-lg py-2 px-4 text-[1.4rem] text-black-2 cursor-pointer transition-all hover:bg-gray-100"
                 onClick={clearCart}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Clear Cart
-              </button>
+              </motion.button>
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
       
       {/* Feedback Message */}
-      {feedbackMessage && (
-        <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-1 text-white py-2 px-5 rounded-md z-[2000] text-[1.4rem]">
-          {feedbackMessage}
-        </div>
-      )}
+      <AnimatePresence>
+        {feedbackMessage && (
+          <motion.div 
+            className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-1 text-white py-2 px-5 rounded-md z-[2000] text-[1.4rem]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {feedbackMessage}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
-}
+};
 
 export default Cart;

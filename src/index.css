@@ -7,11 +7,16 @@
     font-size: 62.5%;
   }
   body {
-    @apply bg-white-1 overflow-x-hidden font-raleway;
+    @apply bg-[#EC947C] overflow-x-hidden font-raleway;
   }
 }
 
 @layer components {
+  /* Ensure container is always centered with proper padding */
+  .container {
+    @apply px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl;
+  }
+  
   /* Fixed header for better mobile experience */
   .fixed-header {
     @apply sticky top-0 bg-white shadow-md z-50;
@@ -60,7 +65,7 @@
   
   /* Container constraints */
   .container-narrow {
-    @apply max-w-5xl mx-auto w-[90%];
+    @apply max-w-5xl mx-auto px-4 sm:px-6;
   }
 }
 

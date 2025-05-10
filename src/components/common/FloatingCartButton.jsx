@@ -7,7 +7,7 @@ const FloatingCartButton = () => {
   
   return (
     <motion.div
-      className="fixed top-20 right-5 z-[1000] cursor-pointer"
+      className="fixed top-5 right-5 z-[1000] cursor-pointer"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3, delay: 0.2 }}

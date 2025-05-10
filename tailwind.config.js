@@ -5,6 +5,15 @@ module.exports = {
       "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1.5rem',
+          sm: '2rem',
+          lg: '4rem',
+          xl: '5rem',
+        },
+      },
       extend: {
         colors: {
           'green-1': '#dc3c24',
