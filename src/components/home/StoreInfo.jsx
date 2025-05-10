@@ -44,7 +44,7 @@ const StoreInfo = () => {
     <section id="storeInfo" className="py-16">
       <div className="container">
         <motion.div 
-          className="flex flex-wrap justify-center gap-4 md:gap-8"
+          className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -53,13 +53,14 @@ const StoreInfo = () => {
           {storeItems.map((item, index) => (
             <motion.div 
               key={index} 
-              className="bg-lightGreen-1 py-5 px-8 md:py-10 md:px-0 rounded-xl text-center min-w-[150px] md:min-w-[200px]"
+              className="bg-lightGreen-1 py-6 px-10 rounded-xl text-center flex-1 min-w-[280px] max-w-[350px] shadow-md hover:shadow-lg transition-shadow duration-300"
               variants={itemVariants}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="w-[30px] md:w-[47px] h-auto mx-auto mb-6 md:mb-10">
+              <div className="w-[40px] md:w-[50px] h-auto mx-auto mb-6">
                 <img src={item.icon} alt={`${item.text} icon`} className="w-full h-full" />
               </div>
-              <h3 className="text-[1.4rem] md:text-[1.8rem] font-poppins font-medium text-black-1 mb-2 md:mb-4">
+              <h3 className="text-[1.6rem] md:text-[1.8rem] font-poppins font-medium text-black-1 mb-2">
                 {item.title}
               </h3>
               <p className="text-[1.4rem] md:text-[1.6rem] font-raleway text-black-2">

@@ -4,13 +4,18 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); // Start with cart closed
 
   // Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('halalStreetCart');
     if (savedCart) {
-      setCart(JSON.parse(savedCart));
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Error parsing cart from localStorage:', error);
+        setCart([]);
+      }
     }
   }, []);
 
@@ -33,8 +38,7 @@ export const CartProvider = ({ children }) => {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
     
-    // Show cart feedback
-    showAddedToCartFeedback();
+    // Show a brief feedback (implemented in Cart component) but don't open cart automatically
   };
 
   // Remove item from cart
@@ -56,11 +60,6 @@ export const CartProvider = ({ children }) => {
   // Clear entire cart
   const clearCart = () => {
     setCart([]);
-  };
-
-  // Show feedback when item is added to cart
-  const showAddedToCartFeedback = () => {
-    // Implementation will be in the Cart component
   };
 
   // Get total items in cart

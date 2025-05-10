@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import CartContext from '../../context/CartContext';
 import Cart from '../common/Cart';
@@ -7,6 +7,10 @@ import Cart from '../common/Cart';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { getTotalItems, toggleCart } = useContext(CartContext);
+  const location = useLocation(); // Get current location/route
+  
+  // Check if current page is the menu page
+  const isMenuPage = location.pathname === '/menu';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -133,21 +137,23 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Cart Icon */}
-      <div 
-        className="fixed top-5 right-5 w-[50px] h-[50px] bg-green-1 rounded-full flex justify-center items-center cursor-pointer z-[1000] shadow-md transition-transform duration-300 hover:scale-105"
-        onClick={toggleCart}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-        <span className="absolute -top-1 -right-1 bg-white text-green-1 rounded-full w-[22px] h-[22px] flex justify-center items-center text-[12px] font-bold border-2 border-green-1">
-          {getTotalItems()}
-        </span>
-      </div>
+      {/* Cart Icon - Only shown on the Menu page */}
+      {isMenuPage && (
+        <div 
+          className="fixed top-5 right-5 w-[50px] h-[50px] bg-green-1 rounded-full flex justify-center items-center cursor-pointer z-[1000] shadow-md transition-transform duration-300 hover:scale-105"
+          onClick={toggleCart}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span className="absolute -top-1 -right-1 bg-white text-green-1 rounded-full w-[22px] h-[22px] flex justify-center items-center text-[12px] font-bold border-2 border-green-1">
+            {getTotalItems()}
+          </span>
+        </div>
+      )}
       
-      {/* Cart Component */}
-      <Cart />
+      {/* Cart Component - Conditionally render only on menu page */}
+      {isMenuPage && <Cart />}
     </>
   );
 };

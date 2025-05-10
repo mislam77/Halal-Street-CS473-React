@@ -7,18 +7,124 @@
     font-size: 62.5%;
   }
   body {
-    @apply bg-green-2 overflow-x-hidden;
+    @apply bg-white-1 overflow-x-hidden font-raleway;
   }
 }
 
 @layer components {
-  .container {
-    @apply max-w-7xl mx-auto w-[90%];
+  /* Fixed header for better mobile experience */
+  .fixed-header {
+    @apply sticky top-0 bg-white shadow-md z-50;
   }
-  .btn {
-    @apply text-green-1 font-poppins font-medium rounded-lg text-[1.4rem] py-[1.2rem] px-[2rem] md:py-[1.3rem] md:px-[2rem] md:text-[2rem];
+  
+  /* Responsive typography */
+  .responsive-heading-1 {
+    @apply text-[2.4rem] md:text-[3.6rem] lg:text-[4.8rem] font-semibold leading-tight;
   }
-  .primary-btn {
-    @apply text-white-1 bg-green-1;
+  
+  .responsive-heading-2 {
+    @apply text-[2rem] md:text-[3rem] lg:text-[3.6rem] font-semibold leading-tight;
   }
+  
+  .responsive-heading-3 {
+    @apply text-[1.8rem] md:text-[2.4rem] lg:text-[3rem] font-semibold leading-tight;
+  }
+  
+  .responsive-body {
+    @apply text-[1.6rem] md:text-[1.8rem] leading-relaxed;
+  }
+  
+  /* Card styling */
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+  
+  /* Button styling */
+  .btn-primary {
+    @apply bg-green-1 text-white py-3 px-6 rounded-lg shadow-md hover:bg-green-2 transition-colors duration-300 text-[1.6rem] font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-green-1 text-green-1 py-3 px-6 rounded-lg shadow-md hover:bg-green-1 hover:text-white transition-colors duration-300 text-[1.6rem] font-medium;
+  }
+  
+  /* Image styling */
+  .img-cover {
+    @apply w-full h-full object-cover;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-10 md:py-16;
+  }
+  
+  /* Container constraints */
+  .container-narrow {
+    @apply max-w-5xl mx-auto w-[90%];
+  }
+}
+
+/* Mobile Menu Improvements */
+@media (max-width: 768px) {
+  .mobile-menu-open {
+    @apply overflow-hidden;
+  }
+  
+  /* Better tap targets on mobile */
+  nav a, button, .interactive-element {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Improved spacing for mobile */
+  .mobile-stack > * + * {
+    @apply mt-6;
+  }
+}
+
+/* Animation utilities */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+/* Improved focus states for accessibility */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+  @apply outline-none ring-2 ring-green-1 ring-offset-2;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-green-2;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-green-1 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-green-2;
+}
+
+/* Responsive font size adjustments for mobile */
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    line-height: 1.2;
+  }
+  
+  /* Adjust paragraph spacing */
+  p {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Improve form elements */
+input, textarea, select {
+  @apply focus:outline-none focus:ring-2 focus:ring-green-1;
 }

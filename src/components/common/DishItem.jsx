@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { motion } from 'framer-motion';
 import CartContext from '../../context/CartContext';
 
 const DishItem = ({ dish, className = '' }) => {
@@ -14,8 +15,11 @@ const DishItem = ({ dish, className = '' }) => {
   };
   
   return (
-    <div className={`bg-lightGreen-1 rounded-lg p-2 md:p-6 flex flex-col sm:flex-row gap-2 md:gap-4 ${className}`}>
-      <div className="flex-1 h-[150px] sm:h-auto">
+    <motion.div 
+      className={`bg-lightGreen-1 rounded-lg p-4 md:p-6 flex flex-col sm:flex-row gap-4 h-full ${className}`}
+      whileHover={{ y: -5, transition: { duration: 0.3 } }}
+    >
+      <div className="sm:w-2/5 h-[150px] sm:h-auto">
         <img 
           src={dish.img} 
           alt={dish.title} 
@@ -24,32 +28,34 @@ const DishItem = ({ dish, className = '' }) => {
       </div>
       
       <div className="flex-1 flex flex-col">
-        <h3 className="text-[1.4rem] md:text-[2.4rem] font-medium text-black-1 mb-2 md:mb-4 leading-tight">
+        <h3 className="text-[1.4rem] md:text-[2rem] font-medium text-black-1 mb-2 leading-tight">
           {dish.title}
         </h3>
         
-        <h4 className="text-[1.4rem] md:text-[2rem] font-semibold text-green-1 mb-2 md:mb-4">
-          ${dish.price}
+        <h4 className="text-[1.4rem] md:text-[1.8rem] font-semibold text-green-1 mb-2">
+          ${parseFloat(dish.price).toFixed(2)}
         </h4>
         
-        <div className="mb-2 md:mb-4 max-h-[15px] w-max">
+        <div className="mb-2 max-h-[15px] w-max">
           <img src="/images/3star.png" alt="3 stars" />
         </div>
         
         {dish.description && (
-          <p className="text-[1.4rem] md:text-[1.6rem] text-black-2 font-medium mb-4">
+          <p className="text-[1.4rem] text-black-2 font-medium mb-4 line-clamp-3">
             {dish.description}
           </p>
         )}
         
-        <button 
+        <motion.button 
           className="mt-auto bg-green-1 text-white border-none rounded-md py-2 px-3 text-[1.4rem] cursor-pointer transition-colors hover:bg-green-2 w-max"
           onClick={handleAddToCart}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           Add to Cart
-        </button>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

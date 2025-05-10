@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MenuSection from '../components/menu/MenuSection';
 import DishGrid from '../components/menu/DishGrid';
+import FloatingCartButton from '../components/common/FloatingCartButton';
+import Cart from '../components/common/Cart';
 
 // Special dishes for the menu page
 const specialDishes = [
@@ -177,6 +179,10 @@ const MenuPage = () => {
         title="Dinner" 
         dishes={dinnerDishes} 
       />
+      {/* <FloatingCartButton /> */}
+      
+      {/* Cart Component - Only visible when toggled by the floating button */}
+      {/* <Cart /> */}
     </>
   );
 };

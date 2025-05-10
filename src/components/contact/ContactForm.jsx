@@ -45,7 +45,7 @@ const ContactForm = () => {
   };
   
   return (
-    <section id="contactForm" className="py-16">
+    <section id="contactForm" className="py-16 bg-white">
       <div className="container">
         <motion.h3 
           className="text-[1.8rem] md:text-[3.6rem] font-semibold text-black-1 mb-8"
@@ -85,7 +85,7 @@ const ContactForm = () => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="w-full border-none bg-lightGreen-1 text-[1.4rem] md:text-[1.8rem] font-raleway font-semibold py-4 md:py-5 px-6 rounded-lg text-black-2"
+                  className="w-full border-2 border-gray-300 focus:border-green-1 outline-none bg-white text-[1.4rem] md:text-[1.8rem] font-raleway py-4 md:py-5 px-6 rounded-lg text-black-2 shadow-sm"
                   required
                 />
               </div>
@@ -101,7 +101,7 @@ const ContactForm = () => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="w-full border-none bg-lightGreen-1 text-[1.4rem] md:text-[1.8rem] font-raleway font-semibold py-4 md:py-5 px-6 rounded-lg text-black-2"
+                  className="w-full border-2 border-gray-300 focus:border-green-1 outline-none bg-white text-[1.4rem] md:text-[1.8rem] font-raleway py-4 md:py-5 px-6 rounded-lg text-black-2 shadow-sm"
                   required
                 />
               </div>
@@ -117,7 +117,7 @@ const ContactForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full border-none bg-lightGreen-1 text-[1.4rem] md:text-[1.8rem] font-raleway font-semibold py-4 md:py-5 px-6 rounded-lg text-black-2"
+                  className="w-full border-2 border-gray-300 focus:border-green-1 outline-none bg-white text-[1.4rem] md:text-[1.8rem] font-raleway py-4 md:py-5 px-6 rounded-lg text-black-2 shadow-sm"
                   required
                 />
               </div>
@@ -133,7 +133,7 @@ const ContactForm = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full border-none bg-lightGreen-1 text-[1.4rem] md:text-[1.8rem] font-raleway font-semibold py-4 md:py-5 px-6 rounded-lg text-black-2"
+                  className="w-full border-2 border-gray-300 focus:border-green-1 outline-none bg-white text-[1.4rem] md:text-[1.8rem] font-raleway py-4 md:py-5 px-6 rounded-lg text-black-2 shadow-sm"
                   required
                 />
               </div>
@@ -149,7 +149,7 @@ const ContactForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="10"
-                  className="w-full border-none bg-lightGreen-1 text-[1.4rem] md:text-[1.8rem] font-raleway font-semibold py-4 md:py-5 px-6 rounded-lg text-black-2 resize-vertical"
+                  className="w-full border-2 border-gray-300 focus:border-green-1 outline-none bg-white text-[1.4rem] md:text-[1.8rem] font-raleway py-4 md:py-5 px-6 rounded-lg text-black-2 resize-vertical shadow-sm"
                   required
                 ></textarea>
               </div>
@@ -158,7 +158,7 @@ const ContactForm = () => {
               <div className="md:col-span-2">
                 <motion.button 
                   type="submit"
-                  className="btn primary-btn transition-colors hover:bg-green-2"
+                  className="bg-green-1 text-white py-4 px-8 rounded-lg text-[1.6rem] font-medium transition-colors hover:bg-green-2 shadow-md"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

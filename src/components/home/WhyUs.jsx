@@ -23,7 +23,7 @@ const WhyUs = () => {
   return (
     <section id="whyUs" className="py-16">
       <div className="container">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-16 max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 max-w-5xl mx-auto">
           {/* Left Text */}
           <motion.div 
             className="text-center md:text-left flex-1"
@@ -32,12 +32,13 @@ const WhyUs = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[1.8rem] md:text-[3.6rem] text-black-1 font-medium mb-4 md:mb-8">
+            <h2 className="text-[2.4rem] md:text-[3.6rem] text-black-1 font-semibold mb-4 md:mb-8 relative inline-block">
               Why Choose Our Food
+              <span className="absolute left-0 bottom-[-8px] h-[3px] w-[60%] bg-green-1"></span>
             </h2>
-            <p className="text-[1.4rem] md:text-[1.8rem] text-black-2 leading-relaxed">
+            <p className="text-[1.6rem] md:text-[1.8rem] text-black-2 leading-relaxed max-w-lg">
               Quality of Service, Food, Ambiance, and Value of Money are the primary elements for choosing a restaurant.
-              Halal Street is one of the most exquisite fine-dinning restaurant in New York city, perfect ambiance, and scrumptious food.
+              Halal Street is one of the most exquisite fine-dining restaurants in New York city, with perfect ambiance and scrumptious food.
             </p>
           </motion.div>
           
@@ -53,11 +54,12 @@ const WhyUs = () => {
               {whyUsItems.map((item, index) => (
                 <motion.div 
                   key={index}
-                  className="bg-lightGreen-1 p-8 rounded-xl"
+                  className="bg-lightGreen-1 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
                   viewport={{ once: true }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
                   <div className="max-w-[56px] md:max-w-[65px] mx-auto mb-4 md:mb-6">
                     <img 
@@ -66,7 +68,7 @@ const WhyUs = () => {
                       className="w-full h-auto"
                     />
                   </div>
-                  <p className="font-poppins text-[1.4rem] md:text-[1.8rem] font-medium text-black-1">
+                  <p className="font-poppins text-[1.4rem] md:text-[1.6rem] font-medium text-black-1">
                     {item.text}
                   </p>
                 </motion.div>

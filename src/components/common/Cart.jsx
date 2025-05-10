@@ -60,13 +60,13 @@ const Cart = () => {
 
   return (
     <>
-      {/* Cart Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black-1 bg-opacity-50 z-[1000] transition-opacity duration-300 ${
-          isCartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setIsCartOpen(false)}
-      ></div>
+      {/* Cart Overlay - Only visible when cart is open */}
+      {isCartOpen && (
+        <div 
+          className="fixed inset-0 bg-black-1 bg-opacity-50 z-[990] transition-opacity duration-300"
+          onClick={() => setIsCartOpen(false)}
+        ></div>
+      )}
       
       {/* Cart Sidebar */}
       <div 
@@ -116,6 +116,7 @@ const Cart = () => {
                     <button 
                       className="w-6 h-6 bg-lightGreen-1 flex items-center justify-center rounded transition-colors hover:bg-green-2 hover:text-white"
                       onClick={() => updateQuantity(index, item.quantity - 1)}
+                      aria-label="Decrease quantity"
                     >
                       <FiMinus className="w-4 h-4" />
                     </button>
@@ -123,12 +124,14 @@ const Cart = () => {
                     <button 
                       className="w-6 h-6 bg-lightGreen-1 flex items-center justify-center rounded transition-colors hover:bg-green-2 hover:text-white"
                       onClick={() => updateQuantity(index, item.quantity + 1)}
+                      aria-label="Increase quantity"
                     >
                       <FiPlus className="w-4 h-4" />
                     </button>
                     <button 
                       className="ml-4 text-[1.4rem] text-red-500 hover:text-red-600 transition-colors"
                       onClick={() => removeFromCart(index)}
+                      aria-label="Remove item"
                     >
                       Remove
                     </button>
@@ -175,4 +178,5 @@ const Cart = () => {
     </>
   );
 }
+
 export default Cart;
